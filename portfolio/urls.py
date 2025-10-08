@@ -21,5 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('about.urls')),# default homepage
     path("projects/", include("projects.urls")), 
-    path("api/", include("projects.urls_api")), 
+    path("api/", include("projects.urls_api")),
+    path("quiz/", include("quiz.urls")), 
 ]

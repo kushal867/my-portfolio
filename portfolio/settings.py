@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'about',
     'projects',
     'rest_framework',
+    'quiz',
     
     
 ]
