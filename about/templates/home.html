@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About Me - Django Portfolio</title>
+  <title>My Portfolio</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="bg-light text-dark">
@@ -17,29 +17,49 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="/">About Me</a></li>
           <li class="nav-item"><a class="nav-link" href="/projects/">Projects</a></li>
-          <li class="nav-item"><a class="nav-link" href="/quiz/">Quiz</a></li>
           <li class="nav-item"><a class="nav-link" href="/blog/">Blog</a></li>
-          <li class="nav-item"><a class="nav-link" href="/contact/">Contact</a></li>
-          <li class="nav-item"><a class="nav-link" href="/Login/">Login</a></li>
-          <li class="nav-item"><a class="nav-link" href="/Register/">Register</a></li>
+          <li class="nav-item"><a class="nav-link" href="/quiz/">Quiz</a></li>
+          {% if user.is_authenticated %}
+            <li class="nav-item"><a class="nav-link" href="/accounts/logout/">Logout</a></li>
+          {% else %}
+            <li class="nav-item"><a class="nav-link" href="/accounts/login/">Login</a></li>
+            <li class="nav-item"><a class="nav-link" href="/accounts/register/">Register</a></li>
+          {% endif %}
         </ul>
       </div>
     </div>
   </nav>
 
   <!-- Hero Section -->
-  <div class="container py-5 text-center">
-    <img src="https://photos.fife.usercontent.google.com/pw/AP1GczOdsgWvCwbpU4aLJCO40DVDJ1T9WMS-CEMRjMvt0LWlO_QoFHlAlpIv=w960-h960-s-no-gm?authuser=0" alt="Profile" class="rounded-circle mb-3">
-    <h1 class="mb-3">Kushal Sapkota</h1>
-    <p class="lead">I am a Django Developer passionate about building web apps with Python & Django.</p>
-    <a href="#" class="btn btn-primary">Download CV</a>
-    <div class="mt-3">
-      <a href="#" class="btn btn-outline-dark btn-sm me-2">GitHub</a>
-      <a href="#" class="btn btn-outline-dark btn-sm">LinkedIn</a>
+  <header class="bg-primary text-white text-center py-5">
+    <div class="container">
+      <h1 class="display-4">Hi, I'm Your Name 👋</h1>
+      <p class="lead">Django Developer | Python Enthusiast | Tech Learner</p>
+      <a href="/projects/" class="btn btn-light btn-lg mt-3">View My Work</a>
     </div>
-  </div>
+  </header>
+
+  <!-- About Section -->
+  <section class="py-5">
+    <div class="container text-center">
+      <h2>About Me</h2>
+      <p class="mt-3">
+        I am passionate about building web applications using <strong>Django</strong> and <strong>Python</strong>.
+        I love creating tools that help people learn and grow.
+      </p>
+      <div class="d-flex justify-content-center gap-3 mt-4">
+        <a href="https://github.com/kushal867" class="btn btn-dark" target="_blank">GitHub</a>
+        <a href="https://www.linkedin.com/in/kushal-sapkota-developer/" class="btn btn-primary" target="_blank">LinkedIn</a>
+        <a href="mailto:kushalsapkota577@example.com" class="btn btn-outline-secondary">Email Me</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white text-center py-3">
+    <p class="mb-0">&copy; {{ now|date:"Y" }} My Portfolio. Built with Django + Bootstrap.</p>
+  </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
