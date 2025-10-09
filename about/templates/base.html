@@ -66,6 +66,10 @@
     </div>
   </footer>
 
+  <button id="backToTop" class="btn btn-primary btn-glow rounded-circle" type="button" aria-label="Back to top">
+    &#8679;
+  </button>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>
     (function() {
@@ -128,6 +132,51 @@
       }, { threshold: 0.2 });
       var targets = document.querySelectorAll('.reveal');
       for (var j = 0; j < targets.length; j++) observer.observe(targets[j]);
+    })();
+  </script>
+  <script>
+    // Card tilt and subtle hero parallax
+    (function() {
+      var cards = document.querySelectorAll('.hover-rise.card');
+      var tilt = function(e) {
+        var rect = this.getBoundingClientRect();
+        var cx = rect.left + rect.width / 2;
+        var cy = rect.top + rect.height / 2;
+        var dx = (e.clientX - cx) / rect.width;
+        var dy = (e.clientY - cy) / rect.height;
+        this.style.transform = 'translateY(-4px) rotateX(' + (-dy * 6) + 'deg) rotateY(' + (dx * 6) + 'deg)';
+      };
+      var reset = function() { this.style.transform = ''; };
+      for (var i = 0; i < cards.length; i++) {
+        cards[i].addEventListener('mousemove', tilt);
+        cards[i].addEventListener('mouseleave', reset);
+      }
+
+      var header = document.querySelector('header.hero-blobs');
+      if (!header) return;
+      header.addEventListener('mousemove', function(e) {
+        var b1 = header.querySelector('.blob-1');
+        var b2 = header.querySelector('.blob-2');
+        if (!b1 || !b2) return;
+        var rect = header.getBoundingClientRect();
+        var rx = (e.clientX - rect.left) / rect.width - 0.5;
+        var ry = (e.clientY - rect.top) / rect.height - 0.5;
+        b1.style.transform = 'translate(' + (-10 + rx * 8) + '%, ' + (-10 + ry * 8) + '%) scale(1)';
+        b2.style.transform = 'translate(' + (10 + rx * 8) + '%, ' + (20 + ry * 8) + '%) scale(1)';
+      });
+    })();
+  </script>
+  <script>
+    // Back to top behavior
+    (function() {
+      var btn = document.getElementById('backToTop');
+      if (!btn) return;
+      var toggle = function() {
+        if (window.scrollY > 400) btn.classList.add('is-visible'); else btn.classList.remove('is-visible');
+      };
+      window.addEventListener('scroll', toggle);
+      toggle();
+      btn.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: 'smooth' }); });
     })();
   </script>
 </body>

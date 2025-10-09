@@ -37,6 +37,113 @@
 
   <section class="py-5 bg-body-tertiary">
     <div class="container">
+      <div class="d-flex align-items-center justify-content-between mb-3">
+        <h2 class="mb-0">Recent Projects</h2>
+        <a href="/projects/" class="btn btn-outline-dark btn-sm hover-rise">View all</a>
+      </div>
+      <div class="row g-4">
+        {% for project in recent_projects %}
+        <div class="col-md-4 reveal">
+          <div class="card glass h-100 hover-rise">
+            {% if project.image %}
+              <div class="card-img-zoom">
+                <img src="{{ project.image.url }}" class="card-img-top" alt="{{ project.title }}">
+              </div>
+            {% endif %}
+            <div class="card-body">
+              <h3 class="h5 mb-2">{{ project.title }}</h3>
+              <p class="text-muted mb-3">{{ project.description|truncatewords:18 }}</p>
+              <div class="d-flex gap-2">
+                {% if project.github_link %}
+                <a href="{{ project.github_link }}" target="_blank" class="btn btn-dark btn-sm">Code</a>
+                {% endif %}
+                {% if project.live_demo %}
+                <a href="{{ project.live_demo }}" target="_blank" class="btn btn-primary btn-sm">Demo</a>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+        {% empty %}
+        <p class="text-muted">No recent projects yet.</p>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-5">
+    <div class="container">
+      <h2 class="text-center mb-4">Skills</h2>
+      <div class="row g-4">
+        <div class="col-md-6 reveal">
+          <div class="card glass">
+            <div class="card-body">
+              <div class="d-flex align-items-center mb-2">
+                <span class="me-2" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M3 3h18v4H3zM3 10h18v4H3zM3 17h18v4H3z"/></svg>
+                </span>
+                <strong class="me-auto">Django</strong>
+                <small>Advanced</small>
+              </div>
+              <div class="progress" style="height: 6px;">
+                <div class="progress-bar bg-success" role="progressbar" style="width: 85%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 reveal">
+          <div class="card glass">
+            <div class="card-body">
+              <div class="d-flex align-items-center mb-2">
+                <span class="me-2" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l4 4-6 6-4-4 6-6zm-8 18h16v2H4z"/></svg>
+                </span>
+                <strong class="me-auto">Python</strong>
+                <small>Advanced</small>
+              </div>
+              <div class="progress" style="height: 6px;">
+                <div class="progress-bar bg-primary" role="progressbar" style="width: 90%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 reveal">
+          <div class="card glass">
+            <div class="card-body">
+              <div class="d-flex align-items-center mb-2">
+                <span class="me-2" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M3 5h18v2H3V5zm0 6h18v2H3v-2zm0 6h18v2H3v-2z"/></svg>
+                </span>
+                <strong class="me-auto">REST APIs</strong>
+                <small>Intermediate</small>
+              </div>
+              <div class="progress" style="height: 6px;">
+                <div class="progress-bar bg-info" role="progressbar" style="width: 75%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 reveal">
+          <div class="card glass">
+            <div class="card-body">
+              <div class="d-flex align-items-center mb-2">
+                <span class="me-2" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M4 4h16v4H4zM4 10h10v10H4zM16 10h4v10h-4z"/></svg>
+                </span>
+                <strong class="me-auto">Frontend</strong>
+                <small>Intermediate</small>
+              </div>
+              <div class="progress" style="height: 6px;">
+                <div class="progress-bar bg-warning" role="progressbar" style="width: 70%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="py-5 bg-body-tertiary">
+    <div class="container">
       <div class="row g-4">
         <div class="col-md-4 reveal">
           <div class="card glass h-100 hover-rise">
