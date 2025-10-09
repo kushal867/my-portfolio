@@ -167,6 +167,44 @@
     })();
   </script>
   <script>
+    // Project filtering chips (client-side)
+    (function() {
+      var chips = document.querySelectorAll('.filter-chip');
+      if (!chips.length) return;
+      var cards = document.querySelectorAll('.project-card');
+      function setActive(target) {
+        for (var i = 0; i < chips.length; i++) chips[i].classList.remove('active');
+        target.classList.add('active');
+      }
+      function filter(tech) {
+        for (var i = 0; i < cards.length; i++) {
+          var card = cards[i];
+          var techs = (card.getAttribute('data-techs') || '').toLowerCase();
+          var show = tech === 'all' || techs.indexOf(tech) !== -1;
+          card.style.transition = 'opacity 200ms ease, transform 200ms ease';
+          if (show) {
+            card.style.opacity = '1';
+            card.style.transform = 'scale(1)';
+            card.style.display = '';
+          } else {
+            card.style.opacity = '0';
+            card.style.transform = 'scale(0.98)';
+            setTimeout((function(c){ return function(){ c.style.display = 'none'; };})(card), 200);
+          }
+        }
+      }
+      for (var j = 0; j < chips.length; j++) {
+        chips[j].addEventListener('click', function() {
+          setActive(this);
+          var tech = this.getAttribute('data-tech');
+          // Show all first to allow animation
+          for (var k = 0; k < cards.length; k++) { cards[k].style.display = ''; }
+          filter(tech);
+        });
+      }
+    })();
+  </script>
+  <script>
     // Back to top behavior
     (function() {
       var btn = document.getElementById('backToTop');

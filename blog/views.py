@@ -14,7 +14,10 @@ def blog_list(request):
 
 def blog_detail(request, slug):
     post = get_object_or_404(Post, slug=slug)
-    return render(request, "blog_detail.html", {"post": post})
+    # Determine previous (newer) and next (older) posts by created_at
+    prev_post = Post.objects.filter(created_at__gt=post.created_at).order_by("created_at").first()
+    next_post = Post.objects.filter(created_at__lt=post.created_at).order_by("-created_at").first()
+    return render(request, "blog_detail.html", {"post": post, "prev_post": prev_post, "next_post": next_post})
 
 def category_posts(request, slug):
     category = get_object_or_404(Category, slug=slug)

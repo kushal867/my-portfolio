@@ -19,8 +19,16 @@
     {% endif %}
   </article>
 
-  <div class="mt-4">
+  <div class="mt-4 d-flex justify-content-between align-items-center">
     <a href="/blog/" class="btn btn-outline-dark hover-rise">Back to Blog</a>
+    <div class="d-flex gap-2">
+      {% if prev_post %}
+      <a class="btn btn-primary btn-sm hover-rise" href="{% url 'blog-detail' slug=prev_post.slug %}">Newer</a>
+      {% endif %}
+      {% if next_post %}
+      <a class="btn btn-primary btn-sm hover-rise" href="{% url 'blog-detail' slug=next_post.slug %}">Older</a>
+      {% endif %}
+    </div>
   </div>
 </div>
 {% endblock %}
