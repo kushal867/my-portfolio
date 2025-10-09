@@ -26,6 +26,7 @@ urlpatterns = [
     path("api/quiz/", include("quiz.urls_api")),
     path("blog/", include("blog.urls")),
     path("acoount/", include("acoount.urls")),
+    path("accounts/", include("acoount.urls")),
     path("api/blog/", include("blog.urls_api")),
    
 ]
