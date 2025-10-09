@@ -7,31 +7,43 @@
 </head>
 <body class="bg-light">
 
-<div class="container py-5">
-  <h1 class="mb-4 text-center">Django Quiz</h1>
+<div class="container py-5 gradient-blob">
+  <h1 class="mb-4 text-center animate-fade-in-up">Django Quiz</h1>
 
   <form id="quizForm" method="POST" action="{% url 'save-score' %}">
     {% csrf_token %}
-    <div class="mb-3">
+    <div class="mb-3 reveal">
       <label for="username" class="form-label">Enter Your Name:</label>
       <input type="text" name="username" class="form-control" required>
     </div>
 
     {% for q in questions %}
-      <div class="card mb-3 p-3">
-        <p><strong>Q{{ forloop.counter }}. {{ q.question_text }}</strong></p>
-        <div>
-          <input type="radio" name="q{{ q.id }}" value="A"> {{ q.option_a }} <br>
-          <input type="radio" name="q{{ q.id }}" value="B"> {{ q.option_b }} <br>
-          <input type="radio" name="q{{ q.id }}" value="C"> {{ q.option_c }} <br>
-          <input type="radio" name="q{{ q.id }}" value="D"> {{ q.option_d }} <br>
+      <div class="card glass mb-3 p-3 reveal hover-rise">
+        <p class="mb-2"><strong>Q{{ forloop.counter }}. {{ q.question_text }}</strong></p>
+        <div class="ms-1">
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="q{{ q.id }}" value="A" id="q{{ q.id }}A">
+            <label class="form-check-label" for="q{{ q.id }}A">{{ q.option_a }}</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="q{{ q.id }}" value="B" id="q{{ q.id }}B">
+            <label class="form-check-label" for="q{{ q.id }}B">{{ q.option_b }}</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="q{{ q.id }}" value="C" id="q{{ q.id }}C">
+            <label class="form-check-label" for="q{{ q.id }}C">{{ q.option_c }}</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="q{{ q.id }}" value="D" id="q{{ q.id }}D">
+            <label class="form-check-label" for="q{{ q.id }}D">{{ q.option_d }}</label>
+          </div>
           <input type="hidden" name="correct{{ q.id }}" value="{{ q.correct_answer }}">
         </div>
       </div>
     {% endfor %}
 
     <input type="hidden" id="scoreInput" name="score" value="0">
-    <button type="submit" class="btn btn-success">Submit Quiz</button>
+    <button type="submit" class="btn btn-success hover-rise">Submit Quiz</button>
   </form>
 </div>
 

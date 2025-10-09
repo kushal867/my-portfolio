@@ -16,13 +16,18 @@
 {% endblock %}
 
 {% block content %}
-<div class="container py-5" style="max-width: 520px;">
-  <h2 class="mb-4">Create your account</h2>
-  <form method="post" class="needs-validation" novalidate>
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-success">Register</button>
-  </form>
-  <p class="mt-3">Already have an account? <a href="{% url 'login' %}">Login</a></p>
+<div class="container py-5" style="max-width: 560px;">
+  <div class="card shadow-sm hover-rise reveal">
+    <div class="card-body p-4">
+      <h2 class="mb-3">Create your account</h2>
+      <p class="text-muted mb-4">Join to explore projects, blog posts and the quiz.</p>
+      <form method="post" class="needs-validation" novalidate>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success w-100">Register</button>
+      </form>
+      <p class="mt-3 mb-0 text-center">Already have an account? <a href="{% url 'login' %}">Login</a></p>
+    </div>
+  </div>
 </div>
 {% endblock %}

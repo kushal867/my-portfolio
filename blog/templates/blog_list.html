@@ -3,8 +3,9 @@
 {% block title %}Blog • My Portfolio{% endblock %}
 
 {% block content %}
-<div class="container py-5">
-  <h1 class="mb-4 text-center">Learning Blog</h1>
+<div class="container py-5 gradient-blob">
+  <h1 class="mb-2 text-center animate-fade-in-up">Learning Blog</h1>
+  <p class="text-center text-muted mb-4">Notes, tips and learnings from projects and experiments.</p>
 
   <form method="get" class="mb-4">
     <input type="text" name="q" class="form-control" placeholder="Search posts...">
@@ -12,15 +13,15 @@
 
   <div class="row g-4">
   {% for post in posts %}
-    <div class="col-md-6">
-      <div class="card h-100 shadow-sm">
+    <div class="col-md-6 reveal">
+      <div class="card glass h-100 shadow-sm hover-rise">
         <div class="card-body">
-          <h3 class="h5"><a href="{% url 'blog-detail' slug=post.slug %}">{{ post.title }}</a></h3>
-          <p class="mb-2">{{ post.content|truncatewords:30 }}</p>
-          <p class="mb-0">
+          <h3 class="h5 mb-2"><a href="{% url 'blog-detail' slug=post.slug %}">{{ post.title }}</a></h3>
+          <p class="mb-3 text-muted">{{ post.content|truncatewords:35 }}</p>
+          <div class="d-flex align-items-center justify-content-between">
             <span class="badge bg-secondary">{{ post.category }}</span>
-            <small class="text-muted ms-2">{{ post.created_at|date:"M d, Y" }}</small>
-          </p>
+            <small class="text-muted">{{ post.created_at|date:"M d, Y" }}</small>
+          </div>
         </div>
       </div>
     </div>

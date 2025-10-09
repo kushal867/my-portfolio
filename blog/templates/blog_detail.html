@@ -4,13 +4,23 @@
 
 {% block content %}
 <div class="container py-5">
-  <h1>{{ post.title }}</h1>
-  <p>
-    <span class="badge bg-secondary">{{ post.category }}</span>
-    <small class="text-muted">{{ post.created_at|date:"M d, Y" }}</small>
-  </p>
-  <p>{{ post.content }}</p>
-  <p><strong>Tags:</strong> {{ post.tags }}</p>
-  <a href="/blog/" class="btn btn-outline-dark">Back to Blog</a>
+  <header class="mb-4">
+    <h1 class="animate-fade-in-up">{{ post.title }}</h1>
+    <div class="d-flex align-items-center gap-3 animate-fade-in animate-delay-1">
+      <span class="badge bg-secondary">{{ post.category }}</span>
+      <small class="text-muted">{{ post.created_at|date:"M d, Y" }}</small>
+    </div>
+  </header>
+
+  <article class="prose reveal">
+    {{ post.content|linebreaks }}
+    {% if post.tags %}
+      <p class="mt-4"><strong>Tags:</strong> {{ post.tags }}</p>
+    {% endif %}
+  </article>
+
+  <div class="mt-4">
+    <a href="/blog/" class="btn btn-outline-dark hover-rise">Back to Blog</a>
+  </div>
 </div>
 {% endblock %}
