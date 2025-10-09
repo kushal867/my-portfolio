@@ -24,5 +24,7 @@ urlpatterns = [
     path("api/", include("projects.urls_api")),
     path("quiz/", include("quiz.urls")), 
     path("api/quiz/", include("quiz.urls_api")),
-    
+    path("blog/", include("blog.urls")),
+    path("acoount/", include("acoount.urls")),
+    path("api/blog/", include("blog.urls_api")),
 ]
