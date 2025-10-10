@@ -10,12 +10,8 @@
     <div class="text-center mb-4 reveal">
       <div class="d-inline-flex flex-wrap gap-2 justify-content-center">
         <button class="btn btn-outline-dark btn-sm filter-chip active" data-tech="all">All</button>
-        {% for p in projects %}
-          {% for tech in p.technologies.split(',') %}
-            {% with t=tech|trim %}
-              <button class="btn btn-outline-dark btn-sm filter-chip" data-tech="{{ t|lower }}">{{ t }}</button>
-            {% endwith %}
-          {% endfor %}
+        {% for t in techs %}
+          <button class="btn btn-outline-dark btn-sm filter-chip" data-tech="{{ t.key }}">{{ t.label }}</button>
         {% endfor %}
       </div>
     </div>
@@ -25,7 +21,7 @@
           <div class="card glass shadow-sm h-100 hover-rise">
             {% if project.image %}
               <div class="card-img-zoom">
-                <img src="{{ project.image.url }}" class="card-img-top" alt="{{ project.title }}">
+                <img src="{{ project.image.url }}" class="card-img-top" alt="{{ project.title }}" loading="lazy">
               </div>
             {% else %}
               <div class="skeleton skeleton-rect mb-0"></div>

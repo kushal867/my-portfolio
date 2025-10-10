@@ -88,7 +88,7 @@
           <div class="card glass h-100 hover-rise">
             {% if project.image %}
               <div class="card-img-zoom">
-                <img src="{{ project.image.url }}" class="card-img-top" alt="{{ project.title }}">
+                <img src="{{ project.image.url }}" class="card-img-top" alt="{{ project.title }}" loading="lazy">
               </div>
             {% endif %}
             <div class="card-body">
@@ -218,11 +218,11 @@
     <div class="container">
       <div class="row text-center g-4">
         <div class="col-6 col-md-3 reveal">
-          <h3 class="display-6 mb-0">{{ projects|length }}</h3>
+          <h3 class="display-6 mb-0" data-counter="{{ projects|length }}">0</h3>
           <p class="text-muted">Projects</p>
         </div>
         <div class="col-6 col-md-3 reveal">
-          <h3 class="display-6 mb-0">{{ posts|length|default:0 }}</h3>
+          <h3 class="display-6 mb-0" data-counter="{{ posts|length|default:0 }}">0</h3>
           <p class="text-muted">Blog Posts</p>
         </div>
         <div class="col-6 col-md-3 reveal">
